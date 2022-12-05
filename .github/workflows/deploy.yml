@@ -19,6 +19,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd ${{ secrets.SERVER_DEPLOY_DIR }}
+            sudo su
             git pull origin main
             npm install
             npm run build
