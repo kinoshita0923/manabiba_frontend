@@ -1,0 +1,37 @@
+body {
+    background-color: #1976d2;
+}
+
+.page {
+    width: 100%;
+    height: 100vh;
+    border-radius: 0 50% 0 50%;
+    background-color: #fff;
+}
+
+.logo {
+    display: block;
+    width: 200px;
+    height: 200px;
+    margin: auto;
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 7vh;
+}
+
+.inputs_box {
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -50%);
+    width: clamp(300px, 40vw, 700px);
+    height: clamp(500px, 40vh, 900px);
+}
+
+.register {
+    display: block;
+    margin: 2vh auto;
+    text-align: center;
+}
