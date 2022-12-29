@@ -32,6 +32,7 @@
 
 .register {
     display: block;
+    width: fit-content;
     margin: 2vh auto;
     text-align: center;
 }
