@@ -1,3 +1,4 @@
+import React from 'react'   
 import { Link } from 'react-router-dom'
 import Button from '@mui/material/Button'
 import FilledInput from '@mui/material/FilledInput'
@@ -20,7 +21,7 @@ const inputStyle = {
     margin: '4vh auto',
 }
 
-const Login = () => {
+const Login: React.FC = () => {
     return (
         <div className={classes.background}>
             <div className={classes.page}>
