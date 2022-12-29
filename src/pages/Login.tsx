@@ -9,6 +9,7 @@ const buttonStyle = {
     maxWidth: '350px',
     height: '5vh',
     margin: 'auto',
+    marginButtom: '2vh'
 }
 
 const inputStyle = {
@@ -28,8 +29,8 @@ const Login = () => {
                     <h1 className={classes.title}>manabiba Login</h1>
                     <FilledInput placeholder='email' sx={inputStyle} required />
                     <FilledInput placeholder='password' sx={inputStyle} required />
-                    <Link to="/register" className={classes.register}>新規登録</Link>
                     <Button variant="contained" sx={buttonStyle} >LogIn</Button>
+                    <Link to="/register" className={classes.register}>新規登録</Link>
                 </div>
             </div>
         </div>
