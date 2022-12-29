@@ -27,8 +27,8 @@ const Login = () => {
                 <div className={classes.inputs_box}>
                     <img src="./manabiba.png" className={classes.logo} />
                     <h1 className={classes.title}>manabiba Login</h1>
-                    <FilledInput placeholder='email' sx={inputStyle} required />
-                    <FilledInput placeholder='password' sx={inputStyle} required />
+                    <FilledInput placeholder='Email' sx={inputStyle} required />
+                    <FilledInput placeholder='Password' sx={inputStyle} required />
                     <Button variant="contained" sx={buttonStyle} >LogIn</Button>
                     <Link to="/register" className={classes.register}>新規登録</Link>
                 </div>
