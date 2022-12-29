@@ -31,7 +31,7 @@ const Signup: React.FC = () => {
                     <FilledInput placeholder='User Name' sx={inputStyle} required />
                     <FilledInput placeholder='Email' sx={inputStyle} required />
                     <FilledInput placeholder='Password' sx={inputStyle} required />
-                    <Button variant="contained" sx={buttonStyle} >LogIn</Button>
+                    <Button variant="contained" sx={buttonStyle} >SignUp</Button>
                     <Link to="/login" className={classes.login_link}>ログイン</Link>
                 </div>
             </div>
