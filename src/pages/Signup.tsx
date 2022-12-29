@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Button from '@mui/material/Button'
 import FilledInput from '@mui/material/FilledInput'
-import classes from '../styles/Login.module.css'
+import classes from '../styles/Signup.module.css'
 
 const buttonStyle = {
     display: 'block',
@@ -21,21 +21,22 @@ const inputStyle = {
     margin: '4vh auto',
 }
 
-const Login: React.FC = () => {
+const Signup: React.FC = () => {
     return (
         <div className={classes.background}>
             <div className={classes.page}>
                 <div className={classes.inputs_box}>
                     <img src="./manabiba.png" className={classes.logo} />
-                    <h1 className={classes.title}>manabiba Login</h1>
+                    <h1 className={classes.title}>manabiba Signup</h1>
+                    <FilledInput placeholder='User Name' sx={inputStyle} required />
                     <FilledInput placeholder='Email' sx={inputStyle} required />
                     <FilledInput placeholder='Password' sx={inputStyle} required />
                     <Button variant="contained" sx={buttonStyle} >LogIn</Button>
-                    <Link to="/signup" className={classes.signup_link}>新規登録</Link>
+                    <Link to="/login" className={classes.login_link}>ログイン</Link>
                 </div>
             </div>
         </div>
     )
 }
 
-export default Login
+export default Signup

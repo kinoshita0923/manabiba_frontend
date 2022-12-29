@@ -30,7 +30,8 @@
     height: clamp(500px, 40vh, 900px);
 }
 
-.signup_link {
+
+.login_link {
     display: block;
     width: fit-content;
     margin: 2vh auto;
