@@ -2,7 +2,6 @@ import React, { useLayoutEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import Header from '../components/Header'
-import IconButton from '@mui/material/IconButton'
 
 const SearchGroup: React.FC = () => {
 
@@ -28,7 +27,6 @@ const SearchGroup: React.FC = () => {
         return (
             <div>
                 <Header />
-                <IconButton />
             </div>
         )
     } else {

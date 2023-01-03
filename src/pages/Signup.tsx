@@ -1,8 +1,7 @@
 import React, { useLayoutEffect, useState } from 'react'   
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios';
-import Button from '@mui/material/Button'
-import FilledInput from '@mui/material/FilledInput'
+import { Button, Checkbox, FilledInput } from '@mui/material';
 import classes from '../styles/Signup.module.css'
 
 const buttonStyle = {
@@ -36,6 +35,7 @@ const Signup: React.FC = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isLogin, setIsLogin] = useState(false);
+    const [isShowPassword, setIsShowPassword] = useState(false);
 
     const changeName = (event: React.ChangeEvent<HTMLInputElement>) => {
         setName(event.target?.value);
@@ -47,6 +47,12 @@ const Signup: React.FC = () => {
 
     const changePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
         setPassword(event.target?.value);
+    }
+
+    const changeIsShowPassword = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setIsShowPassword((isShowPassword) => {
+            return !isShowPassword;
+        });
     }
 
     const register = (event: React.MouseEvent<HTMLElement>) => {
@@ -104,7 +110,11 @@ const Signup: React.FC = () => {
                         <h1 className={classes.title}>manabiba Signup</h1>
                         <FilledInput placeholder='User Name' sx={inputStyle} onChange={changeName} required />
                         <FilledInput placeholder='Email' sx={inputStyle} onChange={changeEmail} required />
-                        <FilledInput placeholder='Password' sx={inputStyle} type="password" onChange={changePassword} required />
+                        <FilledInput placeholder='Password' sx={inputStyle} type={isShowPassword ? 'text' : 'password'} onChange={changePassword} required />
+                        <div className={classes.showPassword}>
+                            <Checkbox id="showPassword" onChange={changeIsShowPassword} />
+                            <label htmlFor="showPassword" >パスワードを表示する</label>
+                        </div>
                         <Button variant="contained" sx={buttonStyle} onClick={register} >SignUp</Button>
                         <Link to="/login" className={classes.login_link}>ログイン</Link>
                     </div>

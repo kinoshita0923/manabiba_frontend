@@ -30,6 +30,12 @@
     height: clamp(500px, 40vh, 900px);
 }
 
+.showPassword {
+    text-align: center;
+    margin-top: -2vh;
+    margin-bottom: 2vh;
+}
+
 .signup_link {
     display: block;
     width: fit-content;

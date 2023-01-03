@@ -1,7 +1,6 @@
 import React, { useLayoutEffect, useState } from 'react'   
 import { Link, useNavigate } from 'react-router-dom'
-import Button from '@mui/material/Button'
-import FilledInput from '@mui/material/FilledInput'
+import { Button, Checkbox, FilledInput } from '@mui/material';
 import classes from '../styles/Login.module.css'
 import axios from 'axios'
 
@@ -30,6 +29,7 @@ const Login: React.FC = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isLogin, setIsLogin] = useState(false);
+    const [isShowPassword, setIsShowPassword] = useState(false);
 
     const changeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(event.target?.value);
@@ -37,6 +37,12 @@ const Login: React.FC = () => {
 
     const changePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
         setPassword(event.target?.value);
+    }
+
+    const changeIsShowPassword = (event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLLabelElement>) => {
+        setIsShowPassword((isShowPassword) => {
+            return !isShowPassword;
+        });
     }
 
     const login = (event: React.MouseEvent<HTMLElement>) => {
@@ -88,7 +94,11 @@ const Login: React.FC = () => {
                         <img src="./manabiba.png" className={classes.logo} />
                         <h1 className={classes.title}>manabiba Login</h1>
                         <FilledInput placeholder='Email' sx={inputStyle} onChange={changeEmail} required />
-                        <FilledInput placeholder='Password' sx={inputStyle} type="password" onChange={changePassword} required />
+                        <FilledInput placeholder='Password' sx={inputStyle} type={isShowPassword ? 'text' : 'password'} onChange={changePassword} required />
+                        <div className={classes.showPassword}>
+                            <Checkbox id="showPassword" onChange={changeIsShowPassword} />
+                            <label htmlFor="showPassword" >パスワードを表示する</label>
+                        </div>
                         <Button variant="contained" sx={buttonStyle} onClick={login} >LogIn</Button>
                         <Link to="/signup" className={classes.signup_link}>新規登録</Link>
                     </div>
