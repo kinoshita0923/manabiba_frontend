@@ -1,5 +1,6 @@
-import React from 'react'   
-import { Link } from 'react-router-dom'
+import React, { useLayoutEffect, useState } from 'react'   
+import { Link, useNavigate } from 'react-router-dom'
+import axios from 'axios';
 import Button from '@mui/material/Button'
 import FilledInput from '@mui/material/FilledInput'
 import classes from '../styles/Signup.module.css'
@@ -21,22 +22,98 @@ const inputStyle = {
     margin: '4vh auto',
 }
 
+const regex = /^[a-zA-Z0-9.?\/-]{8,24}$/;
+const params = new FormData();
+
+const checkPassword = (password: string): boolean => {
+    return regex.test(password);
+}
+
 const Signup: React.FC = () => {
-    return (
-        <div className={classes.background}>
-            <div className={classes.page}>
-                <div className={classes.inputs_box}>
-                    <img src="./manabiba.png" className={classes.logo} />
-                    <h1 className={classes.title}>manabiba Signup</h1>
-                    <FilledInput placeholder='User Name' sx={inputStyle} required />
-                    <FilledInput placeholder='Email' sx={inputStyle} required />
-                    <FilledInput placeholder='Password' sx={inputStyle} required />
-                    <Button variant="contained" sx={buttonStyle} >SignUp</Button>
-                    <Link to="/login" className={classes.login_link}>ログイン</Link>
+
+    const navigation = useNavigate();
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [isLogin, setIsLogin] = useState(false);
+
+    const changeName = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setName(event.target?.value);
+    }
+
+    const changeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setEmail(event.target?.value);
+    }
+
+    const changePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setPassword(event.target?.value);
+    }
+
+    const register = (event: React.MouseEvent<HTMLElement>) => {
+        event.preventDefault();
+
+        if (name === '' && email === '' && password === '') {
+            alert('ユーザ名もしくはメールアドレス、パスワードが入力されていません.');
+        } else if (!checkPassword(password)) {
+            alert('パスワードは8文字から24文字で大文字小文字数字記号をそれぞれ含めてください。');
+        } else {
+            params.append('user_name', name);
+            params.append('email', email);
+            params.append('user_password', password);
+    
+            axios
+                .post('/user/register', params, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    },
+                })
+                .then(() => {
+                    params.delete('user_name')
+                    params.delete('email');
+                    params.delete('user_password');
+                    navigation('/search-group');
+                })
+                .catch(() => {
+                    params.delete('user_name');
+                    params.delete('email');
+                    params.delete('user_password');
+                    alert('通信エラー');
+                });
+        }
+    }
+
+    useLayoutEffect(() => {
+        axios
+            .get('/user/check-login')
+            .then((res) => {
+                if (res.data !== "No token") {
+                    setIsLogin(false);
+                    navigation('/search-group');
+                } else {
+                    setIsLogin(true);
+                }
+            });
+    });
+
+    if (isLogin) {
+        return (
+            <div className={classes.background}>
+                <div className={classes.page}>
+                    <div className={classes.inputs_box}>
+                        <img src="./manabiba.png" className={classes.logo} />
+                        <h1 className={classes.title}>manabiba Signup</h1>
+                        <FilledInput placeholder='User Name' sx={inputStyle} onChange={changeName} required />
+                        <FilledInput placeholder='Email' sx={inputStyle} onChange={changeEmail} required />
+                        <FilledInput placeholder='Password' sx={inputStyle} type="password" onChange={changePassword} required />
+                        <Button variant="contained" sx={buttonStyle} onClick={register} >SignUp</Button>
+                        <Link to="/login" className={classes.login_link}>ログイン</Link>
+                    </div>
                 </div>
             </div>
-        </div>
-    )
+        )
+    } else {
+        return null;
+    }
 }
 
 export default Signup
