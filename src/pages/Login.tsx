@@ -1,4 +1,4 @@
-import React, { useState } from 'react'   
+import React, { useEffect, useState } from 'react'   
 import { Link, useNavigate } from 'react-router-dom'
 import Button from '@mui/material/Button'
 import FilledInput from '@mui/material/FilledInput'
@@ -66,6 +66,14 @@ const Login: React.FC = () => {
             alert('メールアドレスもしくはパスワードが空です。');
         }
     }
+
+    useEffect(() => {
+        axios
+            .get('/user/check-login')
+            .then(() => {
+                navigation('/search-group');
+            });
+    }, [])
 
     return (
         <div className={classes.background}>
