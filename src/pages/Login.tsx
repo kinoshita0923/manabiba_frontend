@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'   
+import React, { useLayoutEffect, useState } from 'react'   
 import { Link, useNavigate } from 'react-router-dom'
 import Button from '@mui/material/Button'
 import FilledInput from '@mui/material/FilledInput'
@@ -22,7 +22,6 @@ const inputStyle = {
     margin: '4vh auto',
 }
 
-const API_URL: string = import.meta.env.VITE_API_URL;
 const params = new FormData();
 
 const Login: React.FC = () => {
@@ -30,6 +29,7 @@ const Login: React.FC = () => {
     const navigation = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [isLogin, setIsLogin] = useState(false);
 
     const changeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(event.target?.value);
@@ -63,32 +63,41 @@ const Login: React.FC = () => {
                     alert('通信エラー');
                 });
         } else {
-            alert('メールアドレスもしくはパスワードが空です。');
+            alert('メールアドレスもしくはパスワードが入力されていません。');
         }
     }
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         axios
             .get('/user/check-login')
-            .then(() => {
-                navigation('/search-group');
+            .then((res) => {
+                if (res.data !== "No token") {
+                    setIsLogin(false);
+                    navigation('/search-group');
+                } else {
+                    setIsLogin(true);
+                }
             });
-    }, [])
+    });
 
-    return (
-        <div className={classes.background}>
-            <div className={classes.page}>
-                <div className={classes.inputs_box}>
-                    <img src="./manabiba.png" className={classes.logo} />
-                    <h1 className={classes.title}>manabiba Login</h1>
-                    <FilledInput placeholder='Email' sx={inputStyle} onChange={changeEmail} required />
-                    <FilledInput placeholder='Password' sx={inputStyle} type="password" onChange={changePassword} required />
-                    <Button variant="contained" sx={buttonStyle} onClick={login} >LogIn</Button>
-                    <Link to="/signup" className={classes.signup_link}>新規登録</Link>
+    if (isLogin) {
+        return (
+            <div className={classes.background}>
+                <div className={classes.page}>
+                    <div className={classes.inputs_box}>
+                        <img src="./manabiba.png" className={classes.logo} />
+                        <h1 className={classes.title}>manabiba Login</h1>
+                        <FilledInput placeholder='Email' sx={inputStyle} onChange={changeEmail} required />
+                        <FilledInput placeholder='Password' sx={inputStyle} type="password" onChange={changePassword} required />
+                        <Button variant="contained" sx={buttonStyle} onClick={login} >LogIn</Button>
+                        <Link to="/signup" className={classes.signup_link}>新規登録</Link>
+                    </div>
                 </div>
             </div>
-        </div>
-    )
+        )
+    } else {
+        return null;
+    }
 }
 
 export default Login
