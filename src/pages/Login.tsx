@@ -47,7 +47,7 @@ const Login: React.FC = () => {
             params.append('password', password);
 
             axios
-                .post(API_URL + '/user/authentication', params, {
+                .post('/user/authentication', params, {
                     headers: {
                         'Content-Type': 'multipart/form-data',
                     },
