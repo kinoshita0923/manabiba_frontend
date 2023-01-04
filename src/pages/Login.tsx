@@ -1,5 +1,6 @@
 import React, { useLayoutEffect, useState } from 'react'   
 import { Link, useNavigate } from 'react-router-dom'
+import { Helmet } from 'react-helmet'
 import { Button, Checkbox, FilledInput } from '@mui/material';
 import classes from '../styles/Login.module.css'
 import axios from 'axios'
@@ -89,6 +90,10 @@ const Login: React.FC = () => {
     if (isLogin) {
         return (
             <div className={classes.background}>
+                <Helmet>
+                    <title>manabiba login</title>
+                </Helmet>
+                
                 <div className={classes.page}>
                     <div className={classes.inputs_box}>
                         <img src="./manabiba.png" className={classes.logo} />

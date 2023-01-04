@@ -1,5 +1,6 @@
 import React, { useLayoutEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { Helmet } from 'react-helmet'
 import axios from 'axios'
 import Header from '../components/Header'
 
@@ -26,6 +27,10 @@ const SearchGroup: React.FC = () => {
     if (isLogin) {
         return (
             <div>
+                <Helmet>
+                    <title>manabiba search group</title>
+                </Helmet>
+
                 <Header />
             </div>
         )

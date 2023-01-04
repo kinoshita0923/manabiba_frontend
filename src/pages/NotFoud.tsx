@@ -1,9 +1,14 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import classes from '../styles/NotFound.module.css'
 
 const NotFound: React.FC = () => {
     return (
         <div className={classes.background}>
+            <Helmet>
+                <title>manabiba Not Found</title>
+            </Helmet>
+
             <div className={classes.page}>
                 <div className={classes.message_box}>
                     <img src="./manabiba.png" className={classes.logo} />
