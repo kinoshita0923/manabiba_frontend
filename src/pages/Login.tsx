@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from 'react'   
+import React, { useEffect, useState } from 'react'   
 import { Link, useNavigate } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 import { Button, Checkbox, FilledInput } from '@mui/material';
@@ -74,7 +74,7 @@ const Login: React.FC = () => {
         }
     }
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         axios
             .get('/user/check-login')
             .then((res) => {
@@ -85,7 +85,7 @@ const Login: React.FC = () => {
                     setIsLogin(true);
                 }
             });
-    });
+    }, []);
 
     if (isLogin) {
         return (

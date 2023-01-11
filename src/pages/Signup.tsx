@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from 'react'   
+import React, { useEffect, useState } from 'react'   
 import { Link, useNavigate } from 'react-router-dom'
 import { Helmet } from 'react-helmet';
 import axios from 'axios';
@@ -89,7 +89,7 @@ const Signup: React.FC = () => {
         }
     }
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         axios
             .get('/user/check-login')
             .then((res) => {
@@ -100,7 +100,7 @@ const Signup: React.FC = () => {
                     setIsLogin(true);
                 }
             });
-    });
+    }, []);
 
     if (isLogin) {
         return (
