@@ -20,6 +20,7 @@ const inputStyle = {
     maxWidth: '400px',
     height: '5vh',
     margin: '4vh auto',
+    fontSize: '1.5vh',
 }
 
 const params = new FormData();
@@ -104,7 +105,7 @@ const Login: React.FC = () => {
                             <Checkbox id="showPassword" onChange={changeIsShowPassword} />
                             <label htmlFor="showPassword" >パスワードを表示する</label>
                         </div>
-                        <Button variant="contained" sx={buttonStyle} onClick={login} >LogIn</Button>
+                        <Button variant="contained" sx={buttonStyle} /*onClick={login}*/ >LogIn</Button>
                         <Link to="/signup" className={classes.signup_link}>新規登録</Link>
                     </div>
                 </div>
@@ -115,4 +116,4 @@ const Login: React.FC = () => {
     }
 }
 
-export default Login
+export default Login;

@@ -20,6 +20,7 @@ const inputStyle = {
     maxWidth: '400px',
     height: '5vh',
     margin: '4vh auto',
+    fontSize: '1.5vh',
 }
 
 const regex = /^[a-zA-Z0-9.?\/-]{8,24}$/;
@@ -120,7 +121,7 @@ const Signup: React.FC = () => {
                             <Checkbox id="showPassword" onChange={changeIsShowPassword} />
                             <label htmlFor="showPassword" >パスワードを表示する</label>
                         </div>
-                        <Button variant="contained" sx={buttonStyle} onClick={register} >SignUp</Button>
+                        <Button variant="contained" sx={buttonStyle} /*onClick={register}*/ >SignUp</Button>
                         <Link to="/login" className={classes.login_link}>ログイン</Link>
                     </div>
                 </div>
