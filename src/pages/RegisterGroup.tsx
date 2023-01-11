@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 import axios from 'axios'
@@ -9,7 +9,7 @@ const SearchGroup: React.FC = () => {
     const navigation = useNavigate();
     const [isLogin, setIsLogin] = useState(false);
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         axios
             .get('/user/check-login')
             .then((res) => {
@@ -22,7 +22,7 @@ const SearchGroup: React.FC = () => {
             }).catch(() => {
                 navigation('/login');
             });
-    });
+    }, []);
 
     if (isLogin) {
         return (
