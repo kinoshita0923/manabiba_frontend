@@ -121,7 +121,7 @@ const Signup: React.FC = () => {
                             <Checkbox id="showPassword" onChange={changeIsShowPassword} />
                             <label htmlFor="showPassword" >パスワードを表示する</label>
                         </div>
-                        <Button variant="contained" sx={buttonStyle} /*onClick={register}*/ >SignUp</Button>
+                        <Button variant="contained" sx={buttonStyle} onClick={register} >SignUp</Button>
                         <Link to="/login" className={classes.login_link}>ログイン</Link>
                     </div>
                 </div>
